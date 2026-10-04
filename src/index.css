@@ -1,0 +1,243 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Newsreader", ui-serif, Georgia, serif;
+
+  --color-paper: #faf9f7;
+  --color-paper-warm: #f5f3ef;
+  --color-ink: #1a1917;
+  --color-ink-soft: #4a4742;
+  --color-ink-muted: #6e6a62;
+  --color-line: #e5e2dc;
+  --color-accent: #a8431f;
+  --color-accent-hover: #8f3818;
+
+  --color-night: #0b0b0c;
+  --color-night-surface: #141416;
+  --color-night-fg: #ece9e3;
+  --color-night-muted: #8d8a84;
+  --color-night-faint: #86837e;
+  --color-night-line: rgba(236, 233, 227, 0.14);
+  --color-night-line-strong: rgba(236, 233, 227, 0.28);
+  --color-night-accent: #ff4d1a;
+  --color-night-accent-hover: #ff6b3d;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html:not(.dark) body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+}
+
+html.dark body {
+  background-color: var(--color-night);
+  color: var(--color-night-fg);
+}
+
+section[id] {
+  scroll-margin-top: 3.5rem;
+}
+
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.dark :focus-visible {
+  outline-color: var(--color-night-accent);
+}
+
+/* Typography scale */
+.type-display {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.type-heading {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.type-label {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  line-height: 1.4;
+}
+
+.type-body {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.65;
+  max-width: 65ch;
+}
+
+.type-caption {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* Section rhythm */
+.section {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+@media (min-width: 640px) {
+  .section {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+}
+
+/* Horizontal rule */
+.hr {
+  border: none;
+  border-top: 1px solid var(--color-line);
+}
+
+.dark .hr {
+  border-top-color: var(--color-night-line);
+}
+
+/* Link underline animation */
+.link-underline {
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, currentColor 30%, transparent);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: text-decoration-color 200ms ease;
+}
+
+.link-underline:hover {
+  text-decoration-color: currentColor;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Page transition — subtle, no dependence on it for legibility */
+@keyframes page-enter {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.page-enter {
+  animation: page-enter 400ms ease both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-enter { animation: none; }
+}
+
+/* Nav link active state — stretch to full header height so the
+   underline sits on the header rule instead of a magic offset. */
+.nav-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 3.5rem;
+}
+
+.nav-label,
+.menu-label {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+}
+
+.menu-label {
+  font-size: 14px;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transition: transform 200ms ease;
+}
+
+.dark .nav-link::after {
+  background: var(--color-night-accent);
+}
+
+.nav-link:hover::after,
+.nav-link:focus-visible::after {
+  transform: scaleX(1);
+}
+
+/* Mobile menu animation */
+.mobile-menu {
+  transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1), visibility 0s linear 300ms;
+  visibility: hidden;
+}
+
+.mobile-menu[aria-hidden='false'] {
+  visibility: visible;
+  transition-delay: 0s;
+}
+
+/* Hamburger icon animation */
+.hamburger-line {
+  transition: transform 200ms ease, opacity 200ms ease;
+}
+
+.hamburger-line-top {
+  transform-origin: 10px 5.5px;
+}
+
+.hamburger-line-bottom {
+  transform-origin: 10px 18.5px;
+}
+
+.hamburger-open .hamburger-line-top {
+  transform: rotate(45deg);
+}
+
+.hamburger-open .hamburger-line-middle {
+  opacity: 0;
+}
+
+.hamburger-open .hamburger-line-bottom {
+  transform: rotate(-45deg);
+}

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--
+      CATATAN DEPLOY:
+      Ganti setiap "https://example.com" di bawah (canonical, og:url, twitter:url,
+      JSON-LD "url", public/sitemap.xml, public/robots.txt) dengan domain final.
+    -->
+
+    <title>Nur Mufhtiah Al Jannati</title>
+    <meta name="description" content="Profil Nur Mufhtiah Al Jannati, siswi MAN 1 Pamekasan yang aktif dalam organisasi Paskibra dan memiliki ketertarikan pada dunia menulis." />
+    <meta name="author" content="Nur Mufhtiah Al Jannati" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://example.com/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="Nur Mufhtiah Al Jannati" />
+    <meta property="og:title" content="Nur Mufhtiah Al Jannati" />
+    <meta property="og:description" content="Profil Nur Mufhtiah Al Jannati, siswi MAN 1 Pamekasan yang aktif dalam organisasi Paskibra dan memiliki ketertarikan pada dunia menulis." />
+    <meta property="og:url" content="https://example.com/" />
+    <meta property="og:image" content="https://example.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Nur Mufhtiah Al Jannati — Student, Paskibra, Writing" />
+    <meta property="og:locale" content="id_ID" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Nur Mufhtiah Al Jannati" />
+    <meta name="twitter:description" content="Profil Nur Mufhtiah Al Jannati, siswi MAN 1 Pamekasan yang aktif dalam organisasi Paskibra dan memiliki ketertarikan pada dunia menulis." />
+    <meta name="twitter:url" content="https://example.com/" />
+    <meta name="twitter:image" content="https://example.com/og-image.png" />
+    <meta name="twitter:image:alt" content="Nur Mufhtiah Al Jannati — Student, Paskibra, Writing" />
+
+    <!-- Theme color -->
+    <meta name="theme-color" content="#faf9f7" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0b0b0c" media="(prefers-color-scheme: dark)" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Nur Mufhtiah Al Jannati",
+      "description": "Siswi MAN 1 Pamekasan yang aktif dalam organisasi Paskibra dan memiliki ketertarikan pada dunia menulis.",
+      "url": "https://example.com/",
+      "affiliation": {
+        "@type": "School",
+        "name": "MAN 1 Pamekasan"
+      },
+      "knowsAbout": [
+        "Paskibra",
+        "Menulis"
+      ]
+    }
+    </script>
+
+    <!-- Theme diterapkan sebelum paint pertama, mencegah flash tema salah -->
+    <script>
+      (function() {
+        try {
+          var stored = localStorage.getItem('theme');
+          var dark = stored ? stored === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.classList.add('dark');
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
